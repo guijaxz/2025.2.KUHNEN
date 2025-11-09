@@ -61,3 +61,4 @@ ios/firebase_app_id_file.json
 android/app/src/main/res/values/strings.xml
 ios/Runner/AppDelegate.swift
 android/app/src/main/AndroidManifest.xml
+ios/Runner/Info.plist
