@@ -92,7 +92,7 @@ const sendPushNotification = async (fcmToken, matchedPet) => {
             title: 'Correspondência Encontrada!',
             body: `Uma possível correspondência para seu pet foi encontrada. Toque para ver os detalhes.`
         },
-        data: { petId: matchedPet.id, screen: '/match-details' },
+        data: { petId: String(matchedPet.id), screen: '/match-details' },
         token: fcmToken
     };
 
@@ -100,8 +100,19 @@ const sendPushNotification = async (fcmToken, matchedPet) => {
         await admin.messaging().send(message);
         console.log('Notificação push enviada com sucesso.');
     } catch (error) {
-        console.error('Erro ao enviar notificação push:', error);
-        throw error;
+        if (error.code === 'messaging/registration-token-not-registered') {
+            console.log(`Token FCM inválido detectado: ${fcmToken}. Removendo do Firestore.`);
+            const usersRef = db.collection('users');
+            const snapshot = await usersRef.where('fcmToken', '==', fcmToken).get();
+            if (!snapshot.empty) {
+                snapshot.forEach(doc => {
+                    console.log(`Removendo token do usuário ${doc.id}`);
+                    doc.ref.update({ fcmToken: admin.firestore.FieldValue.delete() });
+                });
+            }
+        } else {
+            console.error('Erro ao enviar notificação push:', error);
+        }
     }
 };
 
@@ -177,7 +188,7 @@ const sendOwnerInteractionPushNotification = async (fcmToken, petData, notifierU
             title: 'Interação no seu Pet!',
             body: `O usuário ${notifierUser.fullName} ${customMessage}. Toque para mais detalhes.`
         },
-        data: { petId: petData.id, screen: '/pet-details' }, 
+        data: { petId: String(petData.id), screen: '/pet-details' }, 
         token: fcmToken
     };
 
@@ -185,8 +196,19 @@ const sendOwnerInteractionPushNotification = async (fcmToken, petData, notifierU
         await admin.messaging().send(message);
         console.log('Notificação push de interação enviada com sucesso.');
     } catch (error) {
-        console.error('Erro ao enviar notificação push de interação:', error);
-        throw error;
+        if (error.code === 'messaging/registration-token-not-registered') {
+            console.log(`Token FCM inválido detectado: ${fcmToken}. Removendo do Firestore.`);
+            const usersRef = db.collection('users');
+            const snapshot = await usersRef.where('fcmToken', '==', fcmToken).get();
+            if (!snapshot.empty) {
+                snapshot.forEach(doc => {
+                    console.log(`Removendo token do usuário ${doc.id}`);
+                    doc.ref.update({ fcmToken: admin.firestore.FieldValue.delete() });
+                });
+            }
+        } else {
+            console.error('Erro ao enviar notificação push de interação:', error);
+        }
     }
 };
 

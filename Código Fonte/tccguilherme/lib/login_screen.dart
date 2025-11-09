@@ -6,6 +6,8 @@ import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:tccguilherme/register_screen.dart';
 import 'package:tccguilherme/main_screen.dart';
+import 'package:tccguilherme/services/notification_service.dart';
+import 'package:tccguilherme/main.dart';
 
 /// Eu construí esta tela para lidar com todas as formas de login.
 /// É um `StatefulWidget` para gerenciar o estado do formulário, o estado de
@@ -56,6 +58,11 @@ class _LoginScreenState extends State<LoginScreen> {
       );
 
       if (mounted) {
+        final notificationService = NotificationService(navigationService);
+        final fcmToken = await notificationService.getFcmToken();
+        if (fcmToken != null) {
+          await notificationService.sendFcmTokenToBackend(fcmToken);
+        }
         ScaffoldMessenger.of(
           context,
         ).showSnackBar(const SnackBar(content: Text('Login bem-sucedido!')));
@@ -162,6 +169,11 @@ class _LoginScreenState extends State<LoginScreen> {
     try {
       await signInMethod();
       if (FirebaseAuth.instance.currentUser != null && mounted) {
+        final notificationService = NotificationService(navigationService);
+        final fcmToken = await notificationService.getFcmToken();
+        if (fcmToken != null) {
+          await notificationService.sendFcmTokenToBackend(fcmToken);
+        }
         ScaffoldMessenger.of(
           context,
         ).showSnackBar(const SnackBar(content: Text('Login bem-sucedido!')));
