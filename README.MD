@@ -1,15 +1,15 @@
 # 🧑‍🎓 Trabalho de Conclusão de Curso (TCC)
 
 ## 📘 Título
-**[Título completo do trabalho]**
+**ENCONTRE SEU PET: SISTEMA MOBILE PARA ENCONTRAR ANIMAIS PERDIDOS**
 
 ## 👤 Autor
-**[Nome completo do aluno]**  
-Curso de [Nome do curso]  
-[Nome da instituição de ensino]  
+**Guilherme Afonso Kuhnen**  
+Curso de Sistemas de informação  
+Centro Universitário Avantis - UNIAVAN 
 
 ## 🎓 Ano da Defesa
-**[Ano]**
+**2025**
 
 ---
 
@@ -23,7 +23,7 @@ Curso de [Nome do curso]
 
 Este repositório contém os materiais desenvolvidos no âmbito do **Trabalho de Conclusão de Curso (TCC)** intitulado:
 
-> **"[Título completo do trabalho]"**, apresentado por **[Nome do aluno]** em **[Ano]**, como requisito parcial para obtenção do título de **Bacharel em Sistemas de Informação** pelo **Centro Universitário Avantis - UNIAVAN**.
+> **"ENCONTRE SEU PET: SISTEMA MOBILE PARA ENCONTRAR ANIMAIS PERDIDOS"**, apresentado por **Guilherme Afonso Kuhnen** em **2025**, como requisito parcial para obtenção do título de **Bacharel em Sistemas de Informação** pelo **Centro Universitário Avantis - UNIAVAN**.
 
 O repositório inclui código-fonte, materiais de apoio, apresentações e referências utilizadas ao longo do desenvolvimento do trabalho.
 
@@ -41,7 +41,7 @@ O repositório inclui código-fonte, materiais de apoio, apresentações e refer
 
 Se este trabalho for utilizado em pesquisas ou projetos, cite da seguinte forma:
 
-> **[SOBRENOME, Nome]**. *[Título do Trabalho]*. Trabalho de Conclusão de Curso (Bacharelado em Sistemas de Informaação) — Centro Universitário Avantis - UNIAVAN, [Ano].
+> **KUHNEN, Guilherme Afonso**. *ENCONTRE SEU PET: SISTEMA MOBILE PARA ENCONTRAR ANIMAIS PERDIDOS*. Trabalho de Conclusão de Curso (Bacharelado em Sistemas de Informação) — Centro Universitário Avantis - UNIAVAN, 2025.
 
 ---
 
@@ -50,15 +50,9 @@ Se este trabalho for utilizado em pesquisas ou projetos, cite da seguinte forma:
 Este repositório está licenciado sob os termos da **Creative Commons Attribution–NonCommercial 4.0 International (CC BY-NC 4.0)**.  
 Você pode **baixar, modificar e utilizar** este conteúdo **desde que cite a fonte e não o utilize para fins comerciais**.  
 
-Ao término do Trabalho de Conclusão de Curso (TCC), **este repositório será transferido à instituição de ensino** como parte do acervo acadêmico permanente.  
-A identificação oficial do repositório deve seguir o padrão:
-
-> **Ano.Semestre.Sobrenome**  
-> `2025.1.Guilherme` (defesa no 1º semestre) ou `2025.2.Guilherme` (defesa no 2º semestre)
-
 ---
 
 ## 📬 Contato
 
-- 📧 [guilherme.afonso@uniavan.edu.br] 
+- 📧 guilherme.afonso@uniavan.edu.br 
 ---
