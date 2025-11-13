@@ -125,16 +125,10 @@ Crie uma API Key.
 
 Abra o arquivo android/app/src/main/AndroidManifest.xml.
 
-Adicione sua chave dentro da tag <application>:
+Adicione sua chave dentro da tag application:
 
-XML
+Deixo no requirements.txt como deve ficar o AndroidManifest.xml
 
-<application ...>
-    <meta-data
-        android:name="com.google.android.geo.API_KEY"
-        android:value="SUA_CHAVE_API_DO_GOOGLE_MAPS_AQUI"/>
-    ...
-</application>
 
 # Facebook Login:
 
@@ -142,42 +136,7 @@ No painel Facebook for Developers, crie um novo aplicativo.
 
 Obtenha seu App ID e Client Token.
 
-Abra o arquivo android/app/src/main/res/values/strings.xml. Crie-o se não existir e adicione:
-
-XML
-
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="app_name">Encontre Seu Pet</string>
-    <string name="facebook_app_id">SEU_APP_ID_DO_FACEBOOK</string>
-    <string name="fb_login_protocol_scheme">fbSEU_APP_ID_DO_FACEBOOK</string>
-    <string name="facebook_client_token">SEU_CLIENT_TOKEN_DO_FACEBOOK</string>
-</resources>
-
-Abra o arquivo android/app/src/main/AndroidManifest.xml e adicione as seguintes meta-data e activity dentro da tag <application>:
-
-XML
-
-<application ...>
-    ...
-    <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
-    <meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/facebook_client_token"/>
-
-    <activity android:name="com.facebook.FacebookActivity"
-        android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-        android:label="@string/app_name" />
-    <activity
-        android:name="com.facebook.CustomTabActivity"
-        android:exported="true">
-        <intent-filter>
-            <action android:name="android.intent.action.VIEW" />
-            <category android:name="android.intent.category.DEFAULT" />
-            <category android:name="android.intent.category.BROWSABLE" />
-            <data android:scheme="@string/fb_login_protocol_scheme" />
-        </intent-filter>
-    </activity>
-    ...
-</application>
+Abra o arquivo android/app/src/main/res/values/strings.xml e copie o que deixei no requirements.txt substituindo alguns campos como id do facebook e token que devem ser pegos do site dev facebook.
 
 IMPORTANTE (Login Google/Facebook): Para o login social no Android funcionar, você precisa gerar uma SHA-1 hash da sua chave de debug (e release) e adicioná-la nas configurações do projeto Firebase (para Google) e no painel do Facebook (para Facebook).
 
@@ -190,65 +149,14 @@ Use a mesma API Key criada para o Android (ela pode ser usada para ambas as plat
 
 Abra o arquivo ios/Runner/AppDelegate.swift.
 
-Importe GoogleMaps e adicione sua chave no método didFinishLaunchingWithOptions:
+Importe GoogleMaps e adicione sua chave no método didFinishLaunchingWithOptions conforme deixado no requirements.txt:
 
-Swift
-
-import UIKit
-import Flutter
-import GoogleMaps // Importe o Google Maps
-
-@UIApplicationMain
-@objc class AppDelegate: FlutterAppDelegate {
-  override func application(
-    _ application: UIApplication,
-    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
-  ) -> Bool {
-
-    GMSServices.provideAPIKey("SUA_CHAVE_API_DO_GOOGLE_MAPS_AQUI") // Adicione sua chave
-
-    GeneratedPluginRegistrant.register(with: self)
-    return super.application(application, didFinishLaunchingWithOptions: launchOptions)
-  }
-}
 
 # Facebook Login:
 
 Abra o arquivo ios/Runner/Info.plist.
 
-Adicione o seguinte bloco de chaves dentro da tag principal <dict>:
-
-XML
-
-<key>CFBundleURLTypes</key>
-<array>
-    <dict>
-        <key>CFBundleURLSchemes</key>
-        <array>
-            <string>fbSEU_APP_ID_DO_FACEBOOK</string>
-        </array>
-    </dict>
-</array>
-<key>FacebookAppID</key>
-<string>SEU_APP_ID_DO_FACEBOOK</string>
-<key>FacebookClientToken</key>
-<string>SEU_CLIENT_TOKEN_DO_FACEBOOK</string>
-<key>FacebookDisplayName</key>
-<string>Encontre Seu Pet</string>
-<key>LSApplicationQueriesSchemes</key>
-<array>
-    <string>fbapi</string>
-    <string>fb-messenger-share-api</string>
-</array>
-
-Adicione também as permissões de localização (necessário para o geolocator):
-
-XML
-
-<key>NSLocationWhenInUseUsageDescription</key>
-<string>Este app precisa da sua localização para encontrar pets perdidos perto de você.</string>
-<key>NSLocationAlwaysUsageDescription</key>
-<string>Este app precisa da sua localização para encontrar pets perdidos perto de você.</string>
+E copie-o do arquivo requirements.txt.
 
 # Parte 4: Rodando o Projeto
 Após todas as configurações, você está pronto para rodar o projeto.
