@@ -63,23 +63,7 @@ Na pasta backend/, crie um arquivo chamado .env.
 
 Este arquivo armazenará todas as chaves de API do lado do servidor.
 
-Preencha o arquivo backend/.env com a seguinte estrutura:
-
-Firebase
-Encontre isso no seu console do Firebase > Storage
-FIREBASE_STORAGE_BUCKET="seu-bucket-name.firebasestorage.app"
-
-AWS (Amazon Web Services)
-Crie um usuário IAM com acesso programático e permissões para Rekognition e S3
-AWS_REGION="sua-regiao-aws"  ex: us-east-1
-AWS_ACCESS_KEY_ID="sua-chave-de-acesso-id"
-AWS_SECRET_ACCESS_KEY="sua-chave-de-acesso-secreta"
-
-SendGrid
-Crie uma API Key no painel do SendGrid
-SENDGRID_API_KEY="sua-chave-api-do-sendgrid"
-SENDER_EMAIL="seu-email-de-envio"
-
+Deixo como deve ficar o arquivo .env no requirements.txt
 
 # Parte 2: Configuração do Frontend (Flutter)
 

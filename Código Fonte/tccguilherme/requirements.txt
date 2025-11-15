@@ -1,3 +1,20 @@
+Preencha o arquivo backend/.env com a seguinte estrutura:
+
+Firebase
+FIREBASE_STORAGE_BUCKET="seu-bucket-name.firebasestorage.app"
+Encontre isso no seu console do Firebase > Storage
+
+AWS
+Crie um usuário IAM com acesso programático e permissões para Rekognition e S3
+AWS_REGION="sua-regiao-aws"  ex: us-east-1
+AWS_ACCESS_KEY_ID="sua-chave-de-acesso-id"
+AWS_SECRET_ACCESS_KEY="sua-chave-de-acesso-secreta"
+
+SendGrid
+Crie uma API Key no painel do SendGrid
+SENDGRID_API_KEY="sua-chave-api-do-sendgrid"
+SENDER_EMAIL="seu-email-de-envio"
+
 Como deve ficar o android/app/src/main/AndroidManifest.xml
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
@@ -187,3 +204,40 @@ Como deve ficar o ios/Runner/Info.plist
 	  </array>		
 </dict>
 </plist>
+
+Se quiser utilizar o search_faces_by_image do AWS Rekognition, crie rode o código abaixo uma vez para criar a coleção de pets perdidos e encontrados no AWS Rekognition:
+
+require('dotenv').config();
+
+const { RekognitionClient, CreateCollectionCommand } = require("@aws-sdk/client-rekognition");
+
+
+const rekognitionClient = new RekognitionClient({});
+
+// Função para criar uma coleção
+const createRekognitionCollection = async (collectionName) => {
+  try {
+    const params = {
+      CollectionId: collectionName,
+    };
+    const command = new CreateCollectionCommand(params);
+    const response = await rekognitionClient.send(command);
+    console.log(`Coleção '${collectionName}' criada com sucesso!`);
+    console.log("Resposta:", response);
+  } catch (error) {
+    if (error.name === 'ResourceAlreadyExistsException') {
+      console.warn(`Atenção: A coleção '${collectionName}' já existe.`);
+    } else {
+      console.error(`Erro ao criar a coleção '${collectionName}':`, error);
+    }
+  }
+};
+
+
+const setupCollections = async () => {
+  
+  await createRekognitionCollection("pets_perdidos");
+  await createRekognitionCollection("pets_encontrados");
+};
+
+setupCollections();
